@@ -28,7 +28,7 @@ max_date = all_df["order_approved_at"].max()
 # Sidebar
 with st.sidebar:
     # Title
-    st.title("Hanif Al Irsyad")
+    st.title("Zulian Firmansyah")
 
     # Logo Image
     st.image("./streamlit/gcl.png")

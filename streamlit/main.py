@@ -25,22 +25,6 @@ for col in datetime_cols:
 min_date = all_df["order_approved_at"].min()
 max_date = all_df["order_approved_at"].max()
 
-# Sidebar
-with st.sidebar:
-    # Title
-    st.title("Hanif Al Irsyad")
-
-    # Logo Image
-    st.image("./streamlit/gcl.png")
-
-    # Date Range
-    start_date, end_date = st.date_input(
-        label="Select Date Range",
-        value=[min_date, max_date],
-        min_value=min_date,
-        max_value=max_date
-    )
-
 # Main
 main_df = all_df[(all_df["order_approved_at"] >= str(start_date)) & 
                  (all_df["order_approved_at"] <= str(end_date))]

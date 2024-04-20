@@ -58,7 +58,7 @@ class DataAnalyzer:
         return order_status_df, most_common_status
     
 class BrazilMapPlotter:
-    def __init__(self, plt, mpimg, urllib, st):
+    def __init__(self, data, plt, mpimg, urllib, st):
         self.plt = plt
         self.mpimg = mpimg
         self.urllib = urllib

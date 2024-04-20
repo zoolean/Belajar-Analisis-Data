@@ -71,17 +71,21 @@ with col2:
     total_revenue = format_currency(daily_orders_df["revenue"].sum(), "IDR", locale="id_ID")
     st.markdown(f"Total Revenue: **{total_revenue}**")
 
-fig, ax = plt.subplots(figsize=(12, 6))
-ax.plot(
+plt.figure(figsize=(12, 6))
+plt.bar(
     daily_orders_df["order_approved_at"],
     daily_orders_df["order_count"],
-    marker="o",
+    color="#FFD54F",
+    edgecolor="#FFA000",
     linewidth=2,
-    color="#90CAF9"
 )
-ax.tick_params(axis="x", rotation=45)
-ax.tick_params(axis="y", labelsize=15)
-st.pyplot(fig)
+plt.xlabel("Date", fontsize=15)
+plt.ylabel("Order Count", fontsize=15)
+plt.xticks(rotation=45)
+plt.yticks(fontsize=15)
+plt.title("Daily Orders", fontsize=20)
+plt.grid(axis="y", linestyle="--", alpha=0.7)
+st.pyplot()
 
 
 # Customer Demographic

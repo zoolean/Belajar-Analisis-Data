@@ -14,7 +14,17 @@ class DataAnalyzer:
         }, inplace=True)
         
         return daily_orders_df
-    
+
+def create_sum_spend_df(self):
+        sum_spend_df = self.df.resample(rule='D', on='order_approved_at').agg({
+            "payment_value": "sum"
+        })
+        sum_spend_df = sum_spend_df.reset_index()
+        sum_spend_df.rename(columns={
+            "payment_value": "total_spend"
+        }, inplace=True)
+
+        return sum_spend_df
     
 class BrazilMapPlotter:
     def __init__(self, data, plt, mpimg, urllib, st):

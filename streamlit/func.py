@@ -14,8 +14,8 @@ class DataAnalyzer:
         }, inplace=True)
         
         return daily_orders_df
-
-def create_sum_spend_df(self):
+    
+    def create_sum_spend_df(self):
         sum_spend_df = self.df.resample(rule='D', on='order_approved_at').agg({
             "payment_value": "sum"
         })
@@ -26,7 +26,7 @@ def create_sum_spend_df(self):
 
         return sum_spend_df
 
-def create_sum_order_items_df(self):
+    def create_sum_order_items_df(self):
         sum_order_items_df = self.df.groupby("product_category_name_english")["product_id"].count().reset_index()
         sum_order_items_df.rename(columns={
             "product_id": "product_count"
@@ -57,7 +57,6 @@ def create_sum_order_items_df(self):
 
         return order_status_df, most_common_status
     
-
 class BrazilMapPlotter:
     def __init__(self, data, plt, mpimg, urllib, st):
         self.data = data
@@ -72,4 +71,3 @@ class BrazilMapPlotter:
         self.plt.axis('off')
         self.plt.imshow(brazil, extent=[-73.98283055, -33.8,-33.75116944,5.4])
         self.st.pyplot()
-

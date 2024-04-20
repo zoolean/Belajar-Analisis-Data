@@ -82,98 +82,29 @@ ax.tick_params(axis="x", rotation=45)
 ax.tick_params(axis="y", labelsize=15)
 st.pyplot(fig)
 
-# Customer Spend Money
-st.subheader("Customer Spend Money")
-col1, col2 = st.columns(2)
-
-with col1:
-    total_spend = format_currency(sum_spend_df["total_spend"].sum(), "IDR", locale="id_ID")
-    st.markdown(f"Total Spend: **{total_spend}**")
-
-with col2:
-    avg_spend = format_currency(sum_spend_df["total_spend"].mean(), "IDR", locale="id_ID")
-    st.markdown(f"Average Spend: **{avg_spend}**")
-
-fig, ax = plt.subplots(figsize=(12, 6))
-ax.plot(
-    sum_spend_df["order_approved_at"],
-    sum_spend_df["total_spend"],
-    marker="o",
-    linewidth=2,
-    color="#90CAF9"
-)
-ax.tick_params(axis="x", rotation=45)
-ax.tick_params(axis="y", labelsize=15)
-st.pyplot(fig)
-
-# Order Items
-st.subheader("Order Items")
-col1, col2 = st.columns(2)
-
-with col1:
-    total_items = sum_order_items_df["product_count"].sum()
-    st.markdown(f"Total Items: **{total_items}**")
-
-with col2:
-    avg_items = sum_order_items_df["product_count"].mean()
-    st.markdown(f"Average Items: **{avg_items}**")
-
-fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(45, 25))
-
-colors = ["#068DA9", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3"]
-
-sns.barplot(x="product_count", y="product_category_name_english", data=sum_order_items_df.head(5), palette=colors, ax=ax[0])
-ax[0].set_ylabel(None)
-ax[0].set_xlabel("Number of Sales", fontsize=30)
-ax[0].set_title("Produk paling banyak terjual", loc="center", fontsize=50)
-ax[0].tick_params(axis ='y', labelsize=35)
-ax[0].tick_params(axis ='x', labelsize=30)
-
-sns.barplot(x="product_count", y="product_category_name_english", data=sum_order_items_df.sort_values(by="product_count", ascending=True).head(5), palette=colors, ax=ax[1])
-ax[1].set_ylabel(None)
-ax[1].set_xlabel("Number of Sales", fontsize=30)
-ax[1].invert_xaxis()
-ax[1].yaxis.set_label_position("right")
-ax[1].yaxis.tick_right()
-ax[1].set_title("Produk paling sedikit terjual", loc="center", fontsize=50)
-ax[1].tick_params(axis='y', labelsize=35)
-ax[1].tick_params(axis='x', labelsize=30)
-
-st.pyplot(fig)
-
-# Review Score
-st.subheader("Review Score")
-col1,col2 = st.columns(2)
-
-with col1:
-    avg_review_score = review_score.mean()
-    st.markdown(f"Average Review Score: **{avg_review_score}**")
-
-with col2:
-    most_common_review_score = review_score.value_counts().index[0]
-    st.markdown(f"Most Common Review Score: **{most_common_review_score}**")
-
-fig, ax = plt.subplots(figsize=(12, 6))
-sns.barplot(x=review_score.index, 
-            y=review_score.values, 
-            order=review_score.index,
-            palette=["#068DA9" if score == common_score else "#D3D3D3" for score in review_score.index]
-            )
-
-plt.title("Rating by customers for service", fontsize=15)
-plt.xlabel("Rating")
-plt.ylabel("Count")
-plt.xticks(fontsize=12)
-st.pyplot(fig)
 
 # Customer Demographic
-st.title("Peta Lokasi Pelanggan")
-brazil_map_image = mpimg.imread(urllib.request.urlopen('https://i.pinimg.com/originals/3a/0c/e1/3a0ce18b3c842748c255bc0aa445ad41.jpg'), 'jpg')
-fig3, ax3 = plt.subplots(figsize=(10, 10))
-ax3.scatter(geo_df['geolocation_lng'], geo_df['geolocation_lat'], alpha=0.3, s=0.3, c='#72B6A1')
-ax3.set_title('Peta Lokasi Pelanggan')
-ax3.axis('off')
-ax3.imshow(brazil_map_image, extent=[-73.98283055, -33.8, -33.75116944, 5.4])
-st.pyplot(fig3)
+st.subheader("Customer Demographic")
+    common_status_ = order_status.value_counts().index[0]
+    st.markdown(f"Most Common Order Status: **{common_status_}**")
+
+    fig, ax = plt.subplots(figsize=(12, 6))
+    sns.barplot(x=order_status.index,
+                y=order_status.values,
+                order=order_status.index,
+                palette=["#068DA9" if score == common_status else "#D3D3D3" for score in order_status.index]
+                )
+    
+    plt.title("Order Status", fontsize=15)
+    plt.xlabel("Status")
+    plt.ylabel("Count")
+    plt.xticks(fontsize=12)
+    st.pyplot(fig)
+
+with tab3:
+    map_plot.plot()
+
+    with st.expander("See Explanation"):
+        st.write('Sesuai dengan grafik yang sudah dibuat, ada lebih banyak pelanggan di bagian tenggara dan selatan. Informasi lainnya, ada lebih banyak pelanggan di kota-kota yang merupakan ibu kota (São Paulo, Rio de Janeiro, Porto Alegre, dan lainnya).')
 
 

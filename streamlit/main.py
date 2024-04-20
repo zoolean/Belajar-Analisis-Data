@@ -86,43 +86,10 @@ st.pyplot(fig)
 
 # Customer Demographic
 st.subheader("Customer Demographic")
-tab1, tab2, tab3 = st.tabs(["State", "Order Status", "Geolocation"])
+tab1 = st.tabs(["Geolocation"])
+
 
 with tab1:
-    most_common_state = state.customer_state.value_counts().index[0]
-    st.markdown(f"Most Common State: **{most_common_state}**")
-
-    fig, ax = plt.subplots(figsize=(12, 6))
-    sns.barplot(x=state.customer_state.value_counts().index,
-                y=state.customer_count.values, 
-                data=state,
-                palette=["#068DA9" if score == most_common_state else "#D3D3D3" for score in state.customer_state.value_counts().index]
-                    )
-
-    plt.title("Number customers from State", fontsize=15)
-    plt.xlabel("State")
-    plt.ylabel("Number of Customers")
-    plt.xticks(fontsize=12)
-    st.pyplot(fig)
-
-with tab2:
-    common_status_ = order_status.value_counts().index[0]
-    st.markdown(f"Most Common Order Status: **{common_status_}**")
-
-    fig, ax = plt.subplots(figsize=(12, 6))
-    sns.barplot(x=order_status.index,
-                y=order_status.values,
-                order=order_status.index,
-                palette=["#068DA9" if score == common_status else "#D3D3D3" for score in order_status.index]
-                )
-    
-    plt.title("Order Status", fontsize=15)
-    plt.xlabel("Status")
-    plt.ylabel("Count")
-    plt.xticks(fontsize=12)
-    st.pyplot(fig)
-
-with tab3:
     map_plot.plot()
 
     with st.expander("See Explanation"):

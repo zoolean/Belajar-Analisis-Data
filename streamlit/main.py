@@ -167,48 +167,13 @@ plt.xticks(fontsize=12)
 st.pyplot(fig)
 
 # Customer Demographic
-st.subheader("Customer Demographic")
-tab1, tab2, tab3 = st.tabs(["State", "Order Status", "Geolocation"])
-
-with tab1:
-    most_common_state = state.customer_state.value_counts().index[0]
-    st.markdown(f"Most Common State: **{most_common_state}**")
-
-    fig, ax = plt.subplots(figsize=(12, 6))
-    sns.barplot(x=state.customer_state.value_counts().index,
-                y=state.customer_count.values, 
-                data=state,
-                palette=["#068DA9" if score == most_common_state else "#D3D3D3" for score in state.customer_state.value_counts().index]
-                    )
-
-    plt.title("Number customers from State", fontsize=15)
-    plt.xlabel("State")
-    plt.ylabel("Number of Customers")
-    plt.xticks(fontsize=12)
-    st.pyplot(fig)
-
-with tab2:
-    common_status_ = order_status.value_counts().index[0]
-    st.markdown(f"Most Common Order Status: **{common_status_}**")
-
-    fig, ax = plt.subplots(figsize=(12, 6))
-    sns.barplot(x=order_status.index,
-                y=order_status.values,
-                order=order_status.index,
-                palette=["#068DA9" if score == common_status else "#D3D3D3" for score in order_status.index]
-                )
-    
-    plt.title("Order Status", fontsize=15)
-    plt.xlabel("Status")
-    plt.ylabel("Count")
-    plt.xticks(fontsize=12)
-    st.pyplot(fig)
-
-with tab3:
-    map_plot.plot()
-
-    with st.expander("See Explanation"):
-        st.write('Sesuai dengan grafik yang sudah dibuat, ada lebih banyak pelanggan di bagian tenggara dan selatan. Informasi lainnya, ada lebih banyak pelanggan di kota-kota yang merupakan ibu kota (São Paulo, Rio de Janeiro, Porto Alegre, dan lainnya).')
-
+st.title("Peta Lokasi Pelanggan")
+brazil_map_image = mpimg.imread(urllib.request.urlopen('https://i.pinimg.com/originals/3a/0c/e1/3a0ce18b3c842748c255bc0aa445ad41.jpg'), 'jpg')
+fig3, ax3 = plt.subplots(figsize=(10, 10))
+ax3.scatter(geo_df['geolocation_lng'], geo_df['geolocation_lat'], alpha=0.3, s=0.3, c='#72B6A1')
+ax3.set_title('Peta Lokasi Pelanggan')
+ax3.axis('off')
+ax3.imshow(brazil_map_image, extent=[-73.98283055, -33.8, -33.75116944, 5.4])
+st.pyplot(fig3)
 
 

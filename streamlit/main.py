@@ -28,7 +28,7 @@ max_date = all_df["order_approved_at"].max()
 # Sidebar
 with st.sidebar:
     # Judul
-    st.title("Dashboard Analisis Data")
+    st.title("Welcome to E-Commerce Dashboard")
 
     # Logo Image
     st.image("./streamlit/gcl.png")

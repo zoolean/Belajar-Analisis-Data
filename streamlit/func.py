@@ -71,3 +71,4 @@ class BrazilMapPlotter:
         self.plt.axis('off')
         self.plt.imshow(brazil, extent=[-73.98283055, -33.8,-33.75116944,5.4])
         self.st.pyplot()
+

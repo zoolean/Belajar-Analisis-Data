@@ -2,18 +2,15 @@ class DataAnalyzer:
     def __init__(self, df):
         self.df = df
 
-    def create_daily_orders_df(self):
-        daily_orders_df = self.df.resample(rule='D', on='order_approved_at').agg({
-            "order_id": "nunique",
-            "payment_value": "sum"
-        })
-        daily_orders_df = daily_orders_df.reset_index()
-        daily_orders_df.rename(columns={
-            "order_id": "order_count",
-            "payment_value": "revenue"
-        }, inplace=True)
-        
-        return daily_orders_df
+   def create_daily_orders_df(self):
+    daily_orders_df = (
+        self.df.resample(rule='D', on='order_approved_at')
+                .agg(order_count=('order_id', 'nunique'), revenue=('payment_value', 'sum'))
+                .reset_index()
+                .rename(columns={"order_id": "order_count", "payment_value": "revenue"})
+    )
+    return daily_orders_df
+
     
     def create_sum_spend_df(self):
         sum_spend_df = self.df.resample(rule='D', on='order_approved_at').agg({

@@ -14,7 +14,7 @@ class DataAnalyzer:
         }, inplace=True)
         
         return daily_orders_df
-       
+    
     def create_sum_spend_df(self):
         sum_spend_df = self.df.resample(rule='D', on='order_approved_at').agg({
             "payment_value": "sum"
@@ -59,16 +59,15 @@ class DataAnalyzer:
     
 class BrazilMapPlotter:
     def __init__(self, data, plt, mpimg, urllib, st):
+        self.data = data
         self.plt = plt
         self.mpimg = mpimg
         self.urllib = urllib
         self.st = st
 
-    def plot(self, data):
-        brazil = self.mpimg.imread(self.urllib.request.urlopen('https://i.pinimg.com/originals/3a/0c/e1/3a0ce18b3c842748c255bc0aa445ad41.jpg'), 'jpg')
-        ax = data.plot(kind="scatter", x="geolocation_lng", y="geolocation_lat", figsize=(10,10), alpha=0.3, s=0.3, c='blue')
+    def plot(self):
+        brazil = self.mpimg.imread(self.urllib.request.urlopen('https://i.pinimg.com/originals/3a/0c/e1/3a0ce18b3c842748c255bc0aa445ad41.jpg'),'jpg')
+        ax = self.data.plot(kind="scatter", x="geolocation_lng", y="geolocation_lat", figsize=(10,10), alpha=0.3,s=0.3,c='maroon')
         self.plt.axis('off')
-        self.plt.imshow(brazil, extent=[-73.98283055, -33.8, -33.75116944, 5.4])
+        self.plt.imshow(brazil, extent=[-73.98283055, -33.8,-33.75116944,5.4])
         self.st.pyplot()
-
-

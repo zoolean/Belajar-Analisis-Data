@@ -27,19 +27,20 @@ max_date = all_df["order_approved_at"].max()
 
 # Sidebar
 with st.sidebar:
-    # Title
-    st.title("Hanif Al Irsyad")
+    # Judul
+    st.title("Dashboard Analisis Data")
 
     # Logo Image
-    st.image("./streamlit/gcl.png")
+    st.image("./streamlit/logo.png")
 
-    # Date Range
+    # Rentang Tanggal
     start_date, end_date = st.date_input(
-        label="Select Date Range",
+        label="Pilih Rentang Tanggal",
         value=[min_date, max_date],
         min_value=min_date,
         max_value=max_date
     )
+
 
 # Main
 main_df = all_df[(all_df["order_approved_at"] >= str(start_date)) & 

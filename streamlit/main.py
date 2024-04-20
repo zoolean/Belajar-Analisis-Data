@@ -47,7 +47,7 @@ main_df = all_df[(all_df["order_approved_at"] >= str(start_date)) &
                  (all_df["order_approved_at"] <= str(end_date))]
 
 function = DataAnalyzer(main_df)
-map_plot = BrazilMapPlotter(self, plt, mpimg, urllib, st)
+map_plot = BrazilMapPlotter(data, plt, mpimg, urllib, st)
 
 daily_orders_df = function.create_daily_orders_df()
 sum_spend_df = function.create_sum_spend_df()

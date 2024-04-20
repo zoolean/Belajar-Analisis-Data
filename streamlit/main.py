@@ -75,7 +75,7 @@ fig, ax = plt.subplots(figsize=(12, 6))
 ax.bar(
     daily_orders_df["order_approved_at"],
     daily_orders_df["order_count"],
-    color="#90CAF9"
+    color="#f08080"
 )
 ax.set_xlabel("Date", fontsize=15)
 ax.set_ylabel("Order Count", fontsize=15)

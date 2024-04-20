@@ -30,8 +30,7 @@ max_date = all_df["order_approved_at"].max()
 # Main
 
 
-function = DataAnalyzer(main_df)
-map_plot = BrazilMapPlotter(data, plt, mpimg, urllib, st)
+
 
 daily_orders_df = function.create_daily_orders_df()
 sum_spend_df = function.create_sum_spend_df()

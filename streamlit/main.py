@@ -75,7 +75,7 @@ fig, ax = plt.subplots(figsize=(12, 6))
 ax.bar(
     daily_orders_df["order_approved_at"],
     daily_orders_df["order_count"],
-    color="#f08080"
+    color="#ffffff"
 )
 ax.set_xlabel("Date", fontsize=15)
 ax.set_ylabel("Order Count", fontsize=15)
@@ -94,4 +94,4 @@ if tab1 == "Geolocation":
     map_plot.plot()
 
     with st.expander("See Explanation"):
-        st.write('Sesuai dengan grafik yang sudah dibuat, ada lebih banyak pelanggan di bagian tenggara dan selatan. Informasi lainnya, ada lebih banyak pelanggan di kota-kota yang merupakan ibu kota (São Paulo, Rio de Janeiro, Porto Alegre, dan lainnya).')
+        st.write('Berdasarkan visualisasi yang telah disajikan, terdapat sejumlah besar pelanggan yang terletak di wilayah tenggara dan selatan. Selain itu, terlihat bahwa banyak pelanggan berada di kota-kota yang merupakan ibu kota, seperti São Paulo, Rio de Janeiro, Porto Alegre, dan kota-kota lainnya.).')

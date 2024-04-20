@@ -72,7 +72,7 @@ with col2:
     st.markdown(f"Total Revenue: **{total_revenue}**")
 
 plt.figure(figsize=(12, 6))
-plt.bar(
+bars = plt.bar(
     daily_orders_df["order_approved_at"],
     daily_orders_df["order_count"],
     color="#FFD54F",
@@ -85,7 +85,14 @@ plt.xticks(rotation=45)
 plt.yticks(fontsize=15)
 plt.title("Daily Orders", fontsize=20)
 plt.grid(axis="y", linestyle="--", alpha=0.7)
+
+# Menambahkan label di atas setiap batang
+for bar in bars:
+    yval = bar.get_height()
+    plt.text(bar.get_x() + bar.get_width() / 2.0, yval, int(yval), va="bottom", fontsize=12)
+
 st.pyplot()
+
 
 
 # Customer Demographic

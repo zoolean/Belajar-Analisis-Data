@@ -31,7 +31,7 @@ with st.sidebar:
     st.title("Dashboard Analisis Data")
 
     # Logo Image
-    st.image("./streamlit/logo.png")
+    st.image("./streamlit/gcl.png")
 
     # Rentang Tanggal
     start_date, end_date = st.date_input(

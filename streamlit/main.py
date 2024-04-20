@@ -71,27 +71,18 @@ with col2:
     total_revenue = format_currency(daily_orders_df["revenue"].sum(), "IDR", locale="id_ID")
     st.markdown(f"Total Revenue: **{total_revenue}**")
 
-plt.figure(figsize=(12, 6))
-bars = plt.bar(
+fig, ax = plt.subplots(figsize=(12, 6))
+ax.bar(
     daily_orders_df["order_approved_at"],
     daily_orders_df["order_count"],
-    color="#FFD54F",
-    edgecolor="#FFA000",
-    linewidth=2,
+    color="#90CAF9"
 )
-plt.xlabel("Date", fontsize=15)
-plt.ylabel("Order Count", fontsize=15)
-plt.xticks(rotation=45)
-plt.yticks(fontsize=15)
-plt.title("Daily Orders", fontsize=20)
-plt.grid(axis="y", linestyle="--", alpha=0.7)
+ax.set_xlabel("Date", fontsize=15)
+ax.set_ylabel("Order Count", fontsize=15)
+ax.tick_params(axis="x", rotation=45)
+ax.tick_params(axis="y", labelsize=15)
+st.pyplot(fig)
 
-# Menambahkan label di atas setiap batang
-for bar in bars:
-    yval = bar.get_height()
-    plt.text(bar.get_x() + bar.get_width() / 2.0, yval, int(yval), va="bottom", fontsize=12)
-
-st.pyplot()
 
 
 

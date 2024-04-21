@@ -31,7 +31,7 @@ least_purchased = purchased_products.idxmin()
 least_purchased_count = purchased_products.min()
 
 # Data untuk plot pembelian terbanyak
-top_products = purchased_products.head(6)  # Ambil 6 produk teratas untuk plot
+top_products = purchased_products.head(5)  
 
 # Data untuk plot pembelian tersedikit
 least_purchased_data = all_df[all_df['product_category_name_english'].isin(purchased_products.nsmallest(6).index)]
@@ -44,15 +44,15 @@ fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(18, 6))
 
 # Line plot untuk produk terbanyak
 top_products.plot(ax=axes[0], color='#00008B', marker='o', linestyle='-')
-axes[0].set_title('Produk dengan Pembelian Terbanyak')
-axes[0].set_xlabel('Nama Produk')
-axes[0].set_ylabel('Jumlah Pembelian')
+axes[0].set_title('Produk yang Terjual paling Banyak')
+axes[0].set_xlabel('Produk')
+axes[0].set_ylabel('Pembelian')
 
 # Line plot untuk produk tersedikit
 least_purchased_data_counts.plot(ax=axes[1], color='#00008B', marker='o', linestyle='-')
-axes[1].set_title('Produk dengan Pembelian Terendah')
-axes[1].set_xlabel('Nama Produk')
-axes[1].set_ylabel('Jumlah Pembelian')
+axes[1].set_title('Produk yang Terjual paling Rendah')
+axes[1].set_xlabel('Produk')
+axes[1].set_ylabel('Pembelian')
 
 plt.tight_layout()
 st.pyplot(fig)

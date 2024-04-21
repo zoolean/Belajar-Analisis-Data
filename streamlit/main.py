@@ -17,18 +17,7 @@ geo_df = pd.read_csv('./dataset/geolocation.csv')
 all_df['order_purchase_timestamp'] = pd.to_datetime(all_df['order_purchase_timestamp'])
 
 
-# VISUALISASI 1
-st.title("Distribusi Jumlah Order per Bulan (Jun 2017 - Mei 2018)")
-filtered_orders = all_df[
-    (all_df['order_purchase_timestamp'] >= '2017-06-01') &
-    (all_df['order_purchase_timestamp'] <= '2018-05-31')
-]
-monthly_order_counts = filtered_orders.resample('M', on='order_purchase_timestamp').size()
-fig1, ax1 = plt.subplots(figsize=(12, 6))
-sns.lineplot(x=monthly_order_counts.index.strftime('%B %Y'), y=monthly_order_counts.values, marker='o', color='#72B6A1', ax=ax1)
-ax1.set(xlabel='Bulan', ylabel='Jumlah Order')
-ax1.grid(True, linestyle='--', alpha=0.7)
-st.pyplot(fig1)
+
 
 # VISUALISASI 2
 st.title("Produk dengan Pembelian Terbanyak dan Terendah")

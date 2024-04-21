@@ -56,7 +56,7 @@ axes[1].set_ylabel('Pembelian')
 
 plt.tight_layout()
 st.pyplot(fig)
-
+st.write('Berdasarkan Grafik di atas produk yang paling banyak terjual adalah produk "bed_bath_table" atau produk perlengkapan rumah tangga, Sedangkan produk dengan jumlah pembelian terendah adalah "security_and_services" atau produk untuk kemanan dan manajemen resiko yaitu dengan hanya 2 pembelian. Kesimpulannya, kategori produk "bed_bath_table" menjadi favorit pelanggan dengan tingkat penjualan yang jauh lebih tinggi dibandingkan dengan kategori "security_and_services".).')
 
 # VISUALISASI KEDUA
 st.title("Peta Lokasi Pelanggan")

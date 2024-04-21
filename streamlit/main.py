@@ -11,7 +11,7 @@ import urllib.request
 all_df = pd.read_csv("./dataset/all_data.csv")
 
 # Geolocation Dataset
-geolocation = pd.read_csv('./dataset/geolocation.csv')
+geo_df = pd.read_csv('./dataset/geolocation.csv')
 
 # Konversi kolom tanggal ke tipe data datetime
 all_df['order_purchase_timestamp'] = pd.to_datetime(all_df['order_purchase_timestamp'])

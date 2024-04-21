@@ -3,11 +3,9 @@ import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import seaborn as sns
 import streamlit as st
-import urllib
-from func import DataAnalyzer, BrazilMapPlotter
-from babel.numbers import format_currency
-sns.set(style='red')
-st.set_option('deprecation.showPyplotGlobalUse', False)
+import urllib.request
+
+
 
 # Dataset
 all_df = pd.read_csv("./dataset/all_data.csv")

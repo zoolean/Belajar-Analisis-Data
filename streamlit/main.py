@@ -43,13 +43,13 @@ least_purchased_data_counts = least_purchased_data_counts.sort_values()
 fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(18, 6))
 
 # Line plot untuk produk terbanyak
-top_products.plot(ax=axes[0], color='#72B6A1', marker='o', linestyle='-')
+top_products.plot(ax=axes[0], color='#00008B', marker='o', linestyle='-')
 axes[0].set_title('Produk dengan Pembelian Terbanyak')
 axes[0].set_xlabel('Nama Produk')
 axes[0].set_ylabel('Jumlah Pembelian')
 
 # Line plot untuk produk tersedikit
-least_purchased_data_counts.plot(ax=axes[1], color='#72B6A1', marker='o', linestyle='-')
+least_purchased_data_counts.plot(ax=axes[1], color='#00008B', marker='o', linestyle='-')
 axes[1].set_title('Produk dengan Pembelian Terendah')
 axes[1].set_xlabel('Nama Produk')
 axes[1].set_ylabel('Jumlah Pembelian')

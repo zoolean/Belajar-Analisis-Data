@@ -16,10 +16,7 @@ geo_df = pd.read_csv('./dataset/geolocation.csv')
 # Konversi kolom tanggal ke tipe data datetime
 all_df['order_purchase_timestamp'] = pd.to_datetime(all_df['order_purchase_timestamp'])
 
-
-
-
-# VISUALISASI 2
+# VISUALISASI PERTAMA
 st.title("Produk dengan Pembelian Terbanyak dan Terendah")
 
 # Jumlah semua produk terjual
@@ -42,48 +39,26 @@ least_purchased_data_counts = least_purchased_data['product_category_name_englis
 # Mengurutkan data berdasarkan jumlah pembelian
 least_purchased_data_counts = least_purchased_data_counts.sort_values()
 
-# Set warna palet untuk bar plot
-palette = sns.color_palette("Set2")
-
-# Warna khusus untuk produk terbanyak dan tersedikit
-special_colors = {'Produk dengan Pembelian Terbanyak': '#72B6A1', 'Produk dengan Pembelian Terendah': '#72B6A1'}
-
-# Mendapatkan posisi produk dengan pembelian tersedikit
-least_purchased_index = least_purchased_data_counts.index.get_loc(least_purchased)
-
 # Plot produk dengan pembelian terbanyak dan terendah secara bersebelahan
 fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(18, 6))
 
-# Bar plot untuk produk terbanyak
-sns.barplot(x=top_products.index, y=top_products.values, palette=palette, ax=axes[0])
+# Line plot untuk produk terbanyak
+top_products.plot(ax=axes[0], color='#72B6A1', marker='o', linestyle='-')
 axes[0].set_title('Produk dengan Pembelian Terbanyak')
 axes[0].set_xlabel('Nama Produk')
 axes[0].set_ylabel('Jumlah Pembelian')
 
-# Menambahkan warna khusus untuk produk terbanyak
-for i, bar in enumerate(axes[0].patches):
-    if i == 0:
-        bar.set_facecolor(special_colors['Produk dengan Pembelian Terbanyak'])
-    else:
-        bar.set_facecolor('#cbd4d1')  # Warna abu-abu
-
-# Bar plot untuk produk tersedikit
-sns.barplot(x=least_purchased_data_counts.index, y=least_purchased_data_counts.values, palette=palette, ax=axes[1])
+# Line plot untuk produk tersedikit
+least_purchased_data_counts.plot(ax=axes[1], color='#72B6A1', marker='o', linestyle='-')
 axes[1].set_title('Produk dengan Pembelian Terendah')
 axes[1].set_xlabel('Nama Produk')
 axes[1].set_ylabel('Jumlah Pembelian')
 
-# Menambahkan warna khusus untuk produk tersedikit
-for i, bar in enumerate(axes[1].patches):
-    if i == least_purchased_index:
-        bar.set_facecolor(special_colors['Produk dengan Pembelian Terendah'])
-    else:
-        bar.set_facecolor('#cbd4d1')  # Warna abu-abu
-
 plt.tight_layout()
 st.pyplot(fig)
 
-# VISUALISASI 3
+
+# VISUALISASI KEDUA
 st.title("Peta Lokasi Pelanggan")
 brazil_map_image = mpimg.imread(urllib.request.urlopen('https://i.pinimg.com/originals/3a/0c/e1/3a0ce18b3c842748c255bc0aa445ad41.jpg'), 'jpg')
 fig3, ax3 = plt.subplots(figsize=(10, 10))
